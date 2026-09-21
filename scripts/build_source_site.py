@@ -17,12 +17,14 @@ SRC_REPO = os.path.join(DIST, "cookieguard.git")
 VIEW = os.path.join(DIST, "source")
 
 TRACKED = [
-    "README.md", "package.json", "build.mjs", ".gitignore",
+    "README.md", "SUBMISSION.md", "package.json", "build.mjs", ".gitignore",
     "public/index.html",
     "src/chain.js", "src/wallet.jsx", "src/panels.jsx", "src/ui.jsx",
     "src/App.jsx", "src/main.jsx", "src/styles.css",
-    "scripts/verify.mjs", "scripts/surge_deploy.py",
+    "scripts/verify.mjs", "scripts/surge_deploy.py", "scripts/build_source_site.py",
+    "scripts/make_logo.py", "scripts/make_logo_svg.py",
     "scripts/gitea_signup.py", "scripts/probe_hcaptcha.py",
+    "catalog/apps-entry.json", "catalog/x-thread.md",
 ]
 LANG = {".js": "js", ".jsx": "jsx", ".mjs": "js", ".json": "json",
         ".html": "html", ".css": "css", ".md": "md", ".py": "py"}

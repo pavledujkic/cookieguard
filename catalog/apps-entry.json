@@ -1,0 +1,35 @@
+{
+  "id": "cookieguard",
+  "title": "CookieGuard",
+  "shortDescription": "Audit any Cookie Chain token for rug risk from live on-chain data — and publish the verdict back to the chain.",
+  "description": "CookieGuard is a token-safety scanner for Cookie Chain. Paste any mint and it audits it against the chain itself: SPL mint authority, freeze authority, every funded holder account, and true liquidity from both live DEX programs — it reads the pool-state accounts of CookieDEX and Cookieswap BAMM, then resolves each pool's vault token accounts to get real reserves instead of trusting an off-chain number. It scores 0-100 and returns SAFE/CAUTION/DANGER with per-check reasoning, flagging insider concentration with pool vaults excluded so a healthy pool is never mistaken for a rug. Users can then publish the verdict to Cookie Chain as a signed Memo transaction and read their attestations back off the chain to build an audit ledger. It also ships a chain-wide census: one getProgramAccounts(dataSize:82) call enumerates every SPL mint on the network (~6,500) and reports authority safety, supply buckets and network health. No backend, no indexer, no API keys — the browser talks straight to rpc.cookiescan.io.",
+  "category": "Tooling",
+  "tags": ["Security", "Tooling", "Analytics", "DeFi", "Rug Check"],
+  "links": {
+    "website": "https://cookieguard.surge.sh/",
+    "demo": "https://cookieguard.surge.sh/",
+    "github": "https://cookieguard.surge.sh/source/",
+    "x": null,
+    "docs": "https://cookieguard.surge.sh/source/",
+    "video": null
+  },
+  "media": {
+    "logo": "https://raw.githubusercontent.com/cookiechain/superteam-hackathon-submissions/main/logos/cookieguard.png",
+    "banner": "https://raw.githubusercontent.com/cookiechain/superteam-hackathon-submissions/main/screenshots/cookieguard/banner.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/cookiechain/superteam-hackathon-submissions/main/screenshots/cookieguard/01-audit-top.png",
+      "https://raw.githubusercontent.com/cookiechain/superteam-hackathon-submissions/main/screenshots/cookieguard/02-audit-report.png",
+      "https://raw.githubusercontent.com/cookiechain/superteam-hackathon-submissions/main/screenshots/cookieguard/03-liquidity.png",
+      "https://raw.githubusercontent.com/cookiechain/superteam-hackathon-submissions/main/screenshots/cookieguard/04-chain-census.png",
+      "https://raw.githubusercontent.com/cookiechain/superteam-hackathon-submissions/main/screenshots/cookieguard/05-onchain-ledger.png"
+    ]
+  },
+  "team": [
+    {
+      "name": "CookieGuard",
+      "role": "Developer",
+      "x": null,
+      "github": null
+    }
+  ]
+}
