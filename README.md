@@ -109,10 +109,13 @@ node scripts/verify.mjs <mint> <mint> ...   # audit specific tokens
 ## Deploy
 
 ```bash
+git commit -am "..."                   # FIRST: the bare repo is cloned from HEAD
 npm run build
 python3 scripts/build_source_site.py   # bundles the bare repo + code viewer into dist/
 python3 scripts/surge_deploy.py cookieguard.surge.sh
 ```
+
+Commit before `build_source_site.py`, or the published repo lags the working tree by a commit.
 
 `build_source_site.py` clones the working tree into `dist/cookieguard.git` and runs
 `git update-server-info`, which is what makes the repo clonable over the git dumb-HTTP protocol from
