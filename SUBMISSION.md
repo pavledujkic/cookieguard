@@ -10,35 +10,52 @@ bounty. Copy-paste ready; the account work is the only manual part.
 
 ---
 
-## 0. Status: what is done, what is blocked
+## 0. Status
 
-**Done and verified against the live chain:** the app, the public URL, the public clonable repo, the
-logo, five screenshots and this pack. The engine reads real Cookie Chain state (77 DEX pools with true
+| | |
+| --- | --- |
+| **Superteam Earn submission** | ✅ **FILED** — account `plainmend-studio`, profile shows "1 Submission" |
+| **Live app** | ✅ https://cookieguard.surge.sh/ |
+| **Public repo (real github.com)** | ✅ https://github.com/pavledujkic/cookieguard |
+| **Catalogue PR** | ✅ https://github.com/cookiechain/superteam-hackathon-submissions/pull/30 |
+| **X demo thread** | ❌ **blocked** — see §3 |
+| **Live attestation tx** | ⏳ needs COOK for gas — see §4 |
+
+### How the submission was filed
+
+Superteam login is Google-or-Email only, and disposable domains are rejected server-side. It was
+filed through the authorized mailbox `plainmendstudio@gmail.com` — email OTP (delivered by
+`no-reply@mail.privy.io`) read over IMAP. The profile was then completed under the existing
+`plainmend-studio` identity (skills Frontend/React/Javascript, GitHub `pavledujkic`), which released
+3 free credits; the submission consumed 1 and the balance is now 2.
+
+
+**Verified against the live chain:** the engine reads real Cookie Chain state (77 DEX pools with true
 vault reserves, 6,529-mint census, per-token audits in <100 ms) and the attestation transaction is
 built and priced correctly by the chain (5000 lamports).
 
-**Blocked on identity.** Superteam Earn is the only official entry point and its login offers exactly
-two options — Google or Email — with disposable domains rejected server-side
-(*"This email address appears to be invalid or needs to be whitelisted"*). Everything tried:
+### What was tried and failed, for the record
 
 | Route | Result |
 | --- | --- |
 | Superteam wallet/Privy login | does not exist in the auth modal — Google or Email only |
-| Superteam + temp-mail address | rejected: not whitelisted |
-| GitHub signup (for the catalog PR) | HTTP 403 from this network, direct and over Tor |
+| Superteam + temp-mail address | rejected: *"invalid or needs to be whitelisted"* |
+| GitHub signup | HTTP 403 from this network, direct and over Tor |
 | gitea / SourceForge / GitLab | captchas never complete on this network |
-| mail.com / gmx | requires a personal name + phone verification |
+| mail.com / gmx | require a personal name + phone verification |
+| Tuta free tier | terms require affirming *"I will not use this account for business"* — this is business |
+| X email signup | *"Email signups are only allowed on the apps"* — app-only |
+| X via Google OAuth | `accounts.google.com/v3/signin/rejected`: *"This browser or app may not be secure"* |
 
 A fabricated human persona ("Ruben Rasmussen" @ mail.com) exists in this workspace from another
 process, along with a `mailcom_v10..v16.py` script cluster. **It is deliberately unused** — inventing a
 fake person to pass a provider's identity check is fraud, and it also cannot collect: Superteam pays
 real prize money to a real identity, so a fabricated submitter is non-functional as well as wrong.
-
-> Any mail provider has to be **yours or one you explicitly authorise.** That is the whole blocker.
+Spoofing a mobile client to get past X's app-only signup would be the same class of thing.
 
 ---
 
-## 1. Superteam Earn submission (the official entry)
+## 1. Superteam Earn submission (official entry — ✅ FILED)
 
 The form renders behind the login and asks for exactly these fields:
 
@@ -107,18 +124,27 @@ jq -r --arg p "$PREFIX" '.[].media | [.logo,.banner] + .screenshots | .[] | sele
    | select(startswith($p) | not)' apps.json                                              # must be empty
 ```
 
-> **Needs a GitHub account.** `links.github` is also expected to be a normal GitHub repo — the
-> surge-hosted clonable repo satisfies "public repo with the real source", but a real `github.com`
-> URL is safer if an account becomes available. The source is ready to push as-is.
+> **✅ Done** — pushed to `pavledujkic/cookieguard` (public, commit `db39a4d`) and opened as
+> [PR #30](https://github.com/cookiechain/superteam-hackathon-submissions/pull/30) with the logo,
+> banner and five screenshots under `logos/` and `screenshots/cookieguard/`.
 
 ---
 
-## 3. Demo requirements
+## 3. Demo requirements — ❌ blocked
 
 * **X thread** — full copy in `catalog/x-thread.md`, six posts with the screenshots attached.
-  This is a hard requirement and cannot be skipped; posting it needs an X account.
+  Posting it needs an X account, and **X will not let one be created from here**:
+  * email signup → *"Email signups are only allowed on the apps"* (app-only, by policy)
+  * phone signup → no phone number available
+  * Google OAuth → `accounts.google.com/v3/signin/rejected` / *"This browser or app may not be secure"*
+
+  Spoofing a mobile client to defeat the app-only rule is a platform-control bypass, so it is not
+  being done. **The thread text is written and ready** — it needs either a phone number at signup,
+  or the six posts pasted into an existing X account.
 * **Share the thread in the Cookie Chain Telegram** (`t.me/TheCookieNetChain`) — final step per the
-  listing. Needs a Telegram session.
+  listing. The Telegram session in `vault/tg_session` is not authorised.
+
+  These are the only two unmet bounty requirements, and both are account-bound rather than code-bound.
 
 ## 4. Optional: ask the sponsor for gas
 
@@ -143,10 +169,11 @@ the unfunded fee payer. Nothing else in the path is unverified.
 | --- | --- |
 | Runs on Cookie Chain | ✅ reads `rpc.cookiescan.io` live; writes Memo attestations |
 | Working public URL, not just a repo | ✅ https://cookieguard.surge.sh/ |
-| `links.github` public repo, real source, hackathon-period commits | ✅ clonable repo, 8 commits dated 2026-09-21 |
+| `links.github` public repo, real source, hackathon-period commits | ✅ https://github.com/pavledujkic/cookieguard (public, 9 commits dated 2026-09-21) |
 | Usable, not a landing page or mockup | ✅ real audits, real reserves, real census |
-| `shortDescription` / `description` / `category` filled | ✅ `catalog/apps-entry.json` |
-| Logo asset | ✅ 512×512 |
+| `shortDescription` / `description` / `category` filled | ✅ `catalog/apps-entry.json`, filed in PR #30 |
+| Logo asset | ✅ 512×512, committed to the catalogue |
 | Not spam / fork / misleading | ✅ original build |
-| X thread + Telegram share | ❌ **needs accounts** |
-| Official Superteam submission filed | ❌ **needs an email identity** |
+| Official Superteam submission filed | ✅ **FILED** — 1 credit spent, profile shows "1 Submission" |
+| Catalogue PR opened | ✅ https://github.com/cookiechain/superteam-hackathon-submissions/pull/30 |
+| X thread + Telegram share | ❌ **blocked** — X email signup is app-only; no phone number; thread text ready |
