@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """make_logo.py — CookieGuard logo: shield + cookie.
 
-Deliberately drawn with direct ImageDraw primitives on ONE canvas at 4x and downsampled.
-No alpha masks, no Image.composite, no pastes — those produced stray notches because a
-mask plus a gradient never agree on colour at the seam. Direct drawing cannot do that.
+Geometry is drawn with plain ImageDraw primitives on ONE canvas at 4x and downsampled;
+composite/paste appear only to clip the cookie to the shield silhouette.
+
+The one non-obvious constraint: the dough must stay small enough that amber remains visible
+on every side of it. If the disc touches the shield's taper, dark dough and dark canvas meet
+and the silhouette reads as a bite taken out of the shield.
 
 Output: assets/cookieguard-logo.png (512, transparent outside the rounded square)
         assets/cookieguard-banner.png (1600x500)
@@ -97,8 +100,7 @@ def build_logo(size=512):
         x, y, r2 = ccx + dx * cr, ccy + dy * cr, rr * cr
         chip = Image.new("L", (S, S), 0)
         ImageDraw.Draw(chip).ellipse([x - r2, y - r2, x + r2, y + r2], fill=255)
-        chip = Image.composite(chip, Image.new("L", (S, S), 0), inter) if False else chip
-        # keep chips inside the cookie: mask with the cookie∩shield area
+        # keep chips inside the cookie disc (which is already clipped to the shield)
         chip = Image.composite(chip, Image.new("L", (S, S), 0), inter)
         img.paste(Image.new("RGBA", (S, S), (255, 216, 143, 255)), (0, 0), chip)
 

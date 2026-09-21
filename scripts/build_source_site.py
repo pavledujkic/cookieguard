@@ -23,7 +23,7 @@ TRACKED = [
     "src/App.jsx", "src/main.jsx", "src/styles.css",
     "scripts/verify.mjs", "scripts/verify_tx.mjs", "scripts/surge_deploy.py",
     "scripts/build_source_site.py",
-    "scripts/make_logo.py", "scripts/make_logo_svg.py",
+    "scripts/make_logo.py",
     "scripts/gitea_signup.py", "scripts/probe_hcaptcha.py",
     "catalog/apps-entry.json", "catalog/x-thread.md",
 ]
